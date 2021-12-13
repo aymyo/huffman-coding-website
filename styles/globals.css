@@ -2,12 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --light: #ebedeb;
+  --dark: #323232;
+  --primary: #485676;
+  --secondary: #8da092;
+  --tertiary: #97acdc;
+  --accent: #64d8a9;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overflow-x: hidden;
+  background-color: var(--background);
 }
 
 a {
@@ -17,4 +26,49 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+@layer components {
+  .btn {
+    @apply px-4 pb-0.5 text-center text-base rounded-3xl font-serif italic font-bold bg-transparent border text-light border-light transition-all;
+  }
+  .btn:hover {
+    @apply text-primary bg-light transition-all duration-75;
+  }
+  .btn-light {
+    @apply btn text-primary bg-light border-none pt-0.5 shadow-btn;
+  }
+  .btn-light:hover {
+    @apply text-light bg-tertiary transition-all duration-75;
+  }
+  .btn-light:active {
+    @apply text-dark bg-tertiary shadow-none translate-x-0.5 translate-y-1;
+  }
+  .link {
+    @apply font-serif underline;
+  }
+  .link:hover {
+    @apply italic;
+  }
+  .input {
+    @apply bg-transparent border border-primary text-light rounded py-0.5 px-1 italic cursor-pointer;
+  }
+  .animation-wave {
+    background-position: 0 top;
+    animation: waveX 1.5s infinite ease-in-out reverse;
+    animation-play-state: paused;
+  }
+  .animation-wave:hover {
+    animation-play-state: running;
+  }
+}
+
+@keyframes waveX {
+  0%,
+  100% {
+    background-position: 0 top;
+  }
+  50% {
+    background-position: 32px top;
+  }
 }
