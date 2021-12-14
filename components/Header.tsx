@@ -45,7 +45,9 @@ export const Header: FC = () => {
           </a>
         </nav>
       </nav>
-      <h1 className="italic font-bold text-7xl pt-8">Huffman</h1>
+      <h1 id="encoding-tool" className="italic font-bold text-7xl pt-8">
+        Huffman
+      </h1>
       <hgroup className="flex items-center ml-6 pb-8 pt-1">
         {isStandalone ? (
           <button className="btn mr-2" disabled>

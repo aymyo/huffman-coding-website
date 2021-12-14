@@ -8,7 +8,7 @@ export function getTree(symbolAndFrequencyArray: Array<AnalyzedSymbol>): RawNode
         name: elem.char,
         attributes: {
             /* TO FIX: make truncation only to visualize, not to calculate */
-            weight: elem.probability.toFixed(3)
+            weight: elem.probability //.toFixed(3)
         },
         children: [],
     }));

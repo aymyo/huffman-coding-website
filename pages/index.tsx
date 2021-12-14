@@ -145,8 +145,8 @@ const HuffmanEncoder: FC = () => {
       <DecorativeBackground>
         <SymbolFrequencyTable frequencyTable={frequencyTable} />
         <HuffmanTreeWrapper huffmanTree={huffmanTree} />
-        <CodeAlphabetTable codeAlphabet={codeAlphabet} />
         <Conclusions calc={allCalculations} />
+        <CodeAlphabetTable codeAlphabet={codeAlphabet} />
       </DecorativeBackground>
     </>
   );
@@ -169,7 +169,7 @@ const InputOutput: FC<InputOutputProps> = ({
 }) => {
   return (
     <div className="full-container bg-primary h-40 flex items-center justify-center text-light font-serif">
-      <div>
+      <div className="grow">
         <label htmlFor="inputText" className="text-xs italic">
           Text to encode
         </label>
@@ -187,7 +187,7 @@ const InputOutput: FC<InputOutputProps> = ({
       >
         Encode
       </button>
-      <div>
+      <div className="grow">
         <label htmlFor="outputText" className="text-xs italic">
           Encoded text
         </label>
@@ -209,7 +209,10 @@ const DecorativeBackground: FC = ({ children }) => {
       <div className="h-10 bg-tess-2-primary bg-repeat-x bg-center"></div>
       <div className="full-container py-4 flex gap-4 flex-wrap">{children}</div>
       <div className="h-10 bg-tess-1-primary bg-repeat-x bg-center"></div>
-      <div className="h-10 bg-primary bg-tess-2-light bg-repeat-x bg-center"></div>
+      <div
+        id="huffman-theory"
+        className="h-10 bg-primary bg-tess-2-light bg-repeat-x bg-center"
+      ></div>
     </div>
   );
 };
