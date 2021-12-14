@@ -3,7 +3,7 @@ import { FC } from "react";
 
 export const Theory: FC = () => {
   return (
-    <div className="bg-primary text-light py-12 px-2 flex flex-col items-center">
+    <div className="full-container bg-primary text-light py-12 flex flex-col items-center">
       <section className="font-light max-w-2xl text-justify text-sm pb-8">
         <h3
           id="huffman-theory"

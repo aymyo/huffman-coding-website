@@ -12,7 +12,6 @@ export const Header: FC = () => {
       document.referrer.includes("android-app://");
 
     setIsStandalone(isStandalone);
-    console.log(isStandalone, "STANDALONE?");
   };
 
   useEffect(() => {

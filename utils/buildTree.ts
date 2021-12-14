@@ -7,7 +7,8 @@ export function getTree(symbolAndFrequencyArray: Array<AnalyzedSymbol>): RawNode
     let arr: RawNodeDatum[] = symbolAndFrequencyArray.map((elem) => ({
         name: elem.char,
         attributes: {
-            weight: elem.probability,
+            /* TO FIX: make truncation only to visualize, not to calculate */
+            weight: elem.probability.toFixed(3)
         },
         children: [],
     }));

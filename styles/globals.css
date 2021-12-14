@@ -16,7 +16,7 @@ body {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
-  background-color: var(--background);
+  background-color: var(--primary);
 }
 
 a {
@@ -29,6 +29,9 @@ a {
 }
 
 @layer components {
+  .full-container {
+    @apply max-w-6xl mx-auto px-4;
+  }
   .btn {
     @apply leading-tight px-4 pb-0.5 text-center text-base rounded-3xl font-serif italic font-bold bg-transparent border text-light border-light transition-all;
   }
@@ -110,4 +113,23 @@ thead {
 
 .table tr:last-child {
   @apply rounded-xl;
+}
+
+.node__root > circle {
+  fill: var(--primary);
+  stroke: var(--primary);
+}
+
+.node__branch > circle {
+  fill: var(--primary);
+  stroke: var(--primary);
+}
+
+/* To fix, make only visible the truncated data 
+.node__branch tspan {
+  display: none;
+}*/
+
+.link__custom {
+  stroke: var(--secondary) !important;
 }
