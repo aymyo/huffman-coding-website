@@ -30,19 +30,19 @@ a {
 
 @layer components {
   .btn {
-    @apply px-4 pb-0.5 text-center text-base rounded-3xl font-serif italic font-bold bg-transparent border text-light border-light transition-all;
+    @apply leading-tight px-4 pb-0.5 text-center text-base rounded-3xl font-serif italic font-bold bg-transparent border text-light border-light transition-all;
   }
   .btn:hover {
     @apply text-primary bg-light transition-all duration-75;
   }
   .btn-light {
-    @apply btn text-primary bg-light border-none pt-0.5 shadow-btn;
+    @apply btn text-primary bg-light border-none shadow-btn;
   }
   .btn-light:hover {
-    @apply text-light bg-tertiary transition-all duration-75;
+    @apply text-light bg-tertiary;
   }
   .btn-light:active {
-    @apply text-dark bg-tertiary shadow-none translate-x-0.5 translate-y-1;
+    @apply text-light bg-primary shadow-none outline outline-1 translate-x-0.5 translate-y-1;
   }
   .link {
     @apply font-serif underline;
@@ -71,4 +71,43 @@ a {
   50% {
     background-position: 32px top;
   }
+}
+
+.textarea {
+  @apply bg-transparent border border-light rounded-lg text-light py-0.5 px-2 font-sans font-light text-sm
+  h-24;
+  scrollbar-gutter: stable;
+}
+
+.textarea::-webkit-scrollbar-track {
+  -webkit-appearance: none;
+}
+.textarea::-webkit-scrollbar {
+  @apply w-2.5;
+}
+.textarea::-webkit-scrollbar-thumb {
+  @apply bg-light rounded-3xl border-solid border-4 border-transparent;
+  background-clip: content-box;
+}
+.textarea::-webkit-resizer,
+::-webkit-scrollbar-corner {
+  @apply text-light rounded-3xl bg-light border-solid;
+  border-width: 4px;
+  background-clip: content-box;
+  border-color: transparent;
+}
+
+.table th,
+thead {
+  @apply font-serif italic text-light bg-primary px-1 
+  first:rounded-tl-xl last:rounded-tr-xl;
+}
+
+.table td {
+  @apply border border-primary px-1 text-center py-0 
+  first:rounded-bl-xl last:rounded-br-xl;
+}
+
+.table tr:last-child {
+  @apply rounded-xl;
 }

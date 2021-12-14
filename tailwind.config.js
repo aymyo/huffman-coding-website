@@ -17,7 +17,10 @@ module.exports = {
       },
       backgroundImage: {
         'tesselation-3-pattern': "url('/img/tesselation-3.svg')",
-        'footer-pattern': "url('/img/footer.svg')",
+        'tess-1-light': "url('/img/tess-1-light.svg')",
+        'tess-1-primary': "url('/img/tess-1-primary.svg')",
+        'tess-2-light': "url('/img/tess-2-light.svg')",
+        'tess-2-primary': "url('/img/tess-2-primary.svg')",
       },
       listStyleType: {
          circle: 'circle'

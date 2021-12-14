@@ -1,8 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import { FC, useState } from "react";
+import { Footer } from "../components/Footer";
+import { Header } from "../components/Header";
+import { Theory } from "../components/Theory";
+import { getSymbolCode, getTree, huffmanEncode } from "../utils/buildTree";
+import Tree from "react-d3-tree";
+import { RawNodeDatum } from "react-d3-tree/lib/types/common";
 
 const Home: NextPage = () => {
   return (
@@ -14,6 +18,7 @@ const Home: NextPage = () => {
       </Head>
       <Header />
       <HuffmanEncoder />
+      <Theory />
       <Footer />
     </>
   );
@@ -21,65 +26,260 @@ const Home: NextPage = () => {
 
 export default Home;
 
+export interface AnalyzedSymbol {
+  char: string;
+  quantity: number;
+  probability: number;
+}
+
 const HuffmanEncoder: FC = () => {
-  return (
-    <main className="font-serif text-light">
-      <div className="bg-primary">Tool</div>
-      <div className="bg-light text-primary">Calculations</div>
-      <div className="bg-primary">Theory</div>
-    </main>
-  );
-};
+  const defaultInput = "| Write here the text to encode, or this as a test.";
+  const [inputText, setInputText] = useState<string>(defaultInput);
+  const [frequencyTable, setFrequencyTable] = useState<AnalyzedSymbol[]>([]);
+  const [huffmanTree, setHuffmanTree] = useState<RawNodeDatum>();
+  const [codeAlphabet, setCodeAlphabet] = useState<
+    {
+      char: string;
+      code: string | undefined;
+    }[]
+  >();
+  const [outputText, setOutputText] = useState<string>("");
 
-const Footer: FC = () => {
-  return (
-    <footer className="bg-primary text-light pt-4">
-      <div className="h-44 bg-tesselation-3-pattern bg-repeat-x animation-wave"></div>
-      <div className="flex justify-center items-center text-xs pb-6 pt-5 font-serif italic">
-        <p>Developed by</p>
-        <Link href="https://github.com/aymyo">
-          <a target="_blank" className="btn-light text-xs font-base ml-1 mb-1">
-            @aymyo
-          </a>
-        </Link>
-      </div>
-    </footer>
-  );
-};
+  const HuffmanEncoding = () => {
+    //setting Input
+    if (!inputText) setInputText(defaultInput);
+    console.log("Text to Encode:", inputText);
 
-const Header: FC = () => {
-  const [visible, setVisibility] = useState(true);
+    /* Analyze input
+      - Count the number of symbols ✓
+      - Get every unique symbol ✓
+      - Count the frequency of each one ✓
+      - Calculate the probability ✓
+      - Build the analysis table ✓
+    */
+
+    const inputSymbolsArray = inputText.split("");
+    console.log("arrayOfSymbols: ", inputSymbolsArray);
+
+    const N: number = inputSymbolsArray.length;
+
+    const countedUniqueArray = inputSymbolsArray.reduce(
+      (accumulated: Array<[string, number]>, currentChar) => {
+        let currentCharIndex = accumulated.findIndex((element) => {
+          return element[0] === currentChar;
+        });
+        let isCharAlreadyFound = currentCharIndex !== -1;
+
+        if (isCharAlreadyFound) {
+          accumulated[currentCharIndex][1] += 1;
+          return accumulated;
+        } else {
+          return accumulated.concat([[currentChar, 1]]);
+        }
+      },
+      []
+    );
+
+    //console.log("analyzedArray:", countedUniqueArray); // [['h',11],['a',3],...]
+
+    const frequencyTable = countedUniqueArray
+      .map((symbol) => {
+        return {
+          char: symbol[0],
+          quantity: symbol[1],
+          probability: symbol[1] / N,
+        };
+      })
+      .sort((a, b) => b.quantity - a.quantity);
+
+    //console.table(frequencyTable);
+
+    setFrequencyTable(frequencyTable);
+
+    /* Build tree
+       - Iterate and join the lowest probability nodes ✓
+       - Represent tree ✓
+    */
+    let huffmanTree = getTree(frequencyTable);
+    setHuffmanTree(huffmanTree);
+
+    console.log(huffmanTree);
+
+    /* Encode symbols  
+       - Follow tree to get all code words ✓
+    */
+
+    let codeAlphabet = frequencyTable.map((symbol) => {
+      return {
+        char: symbol.char,
+        code: getSymbolCode(huffmanTree, symbol.char),
+      };
+    });
+
+    setCodeAlphabet(codeAlphabet);
+
+    /* Encode text  ✓*/
+
+    let outputText = huffmanEncode(inputText, codeAlphabet).join("");
+    setOutputText(outputText);
+
+    /* Make Calculations  */
+  };
+
   return (
-    <header className="font-serif bg-primary text-light flex flex-col items-center">
-      <nav className="flex items-center p-2">
+    <>
+      <div className="px-2 bg-primary h-40 flex items-center justify-center text-light font-serif">
+        <div>
+          <label htmlFor="inputText" className="text-xs italic">
+            Text to encode
+          </label>
+          <textarea
+            id="inputText"
+            className="textarea w-full"
+            onChange={(e) => setInputText(e.target.value)}
+            placeholder={defaultInput}
+          ></textarea>
+        </div>
         <button
-          className="hover:animate-pulse hover:rotate-45 transition-transform ease-in-out"
-          onClick={() => setVisibility(true)}
+          className="btn-light text-xl px-8 mx-8"
+          onClick={() => HuffmanEncoding()}
         >
-          <Image
-            src="/img/inflated-vertex.svg"
-            width="32px"
-            height="32px"
-            alt="Menu icon"
-          />
+          Encode
         </button>
-        <nav className="flex items-center justify-between w-40 ml-4 mb-2">
-          <a href="#encoding-tool" className="link">
-            tool
-          </a>
-          <a href="#huffman-theory" className="link">
-            theory
-          </a>
-          <a href="#about-huffman-site" className="link">
-            about
-          </a>
-        </nav>
-      </nav>
-      <h1 className="italic font-bold text-7xl pt-8">Huffman</h1>
-      <hgroup className="flex items-center ml-6 pb-8 pt-1">
-        <button className="btn mr-2">online</button>
-        <h2 className="text-5xl italic font-bold -mt-2">Coding</h2>
-      </hgroup>
-    </header>
+        <div>
+          <label htmlFor="outputText" className="text-xs italic">
+            Encoded text
+          </label>
+          <textarea
+            id="outputText"
+            disabled
+            value={outputText}
+            className="textarea w-full border-dotted"
+          ></textarea>
+        </div>
+      </div>
+      <div className="bg-light text-primary">
+        <div className="h-10 bg-primary bg-tess-1-light bg-repeat-x bg-center"></div>
+        <div className="h-10 bg-tess-2-primary bg-repeat-x bg-center"></div>
+        <div className="py-8 px-2 flex gap-4 flex-wrap">
+          <section className="w-56">
+            <h3 className="font-serif italic font-bold text-2xl mb-4">
+              Symbol frequency
+            </h3>
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th>char</th>
+                  <th>quant</th>
+                  <th>p</th>
+                </tr>
+              </thead>
+              <tbody>
+                {frequencyTable.map((item) => {
+                  return (
+                    <tr key={item.char}>
+                      <td>{item.char}</td>
+                      <td>{item.quantity}</td>
+                      <td>{item.probability.toFixed(3)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </section>
+          <section className="w-auto">
+            <h3 className="font-serif italic font-bold text-2xl mb-4">
+              Huffman Tree
+            </h3>
+            <div
+              id="treeWrapper"
+              className="w-full h-56 border border-primary rounded-xl border-dotted"
+            >
+              {huffmanTree ? (
+                <Tree
+                  data={huffmanTree}
+                  rootNodeClassName="node__root"
+                  branchNodeClassName="node__branch"
+                  leafNodeClassName="node__leaf"
+                />
+              ) : (
+                ""
+              )}
+            </div>
+          </section>
+          <section>
+            <h3 className="font-serif italic font-bold text-2xl mb-4">
+              Code Alphabet
+            </h3>
+            <table className="table w-full">
+              <thead>
+                <tr>
+                  <th>char</th>
+                  <th>code</th>
+                </tr>
+              </thead>
+              <tbody>
+                {codeAlphabet?.map((item) => {
+                  return (
+                    <tr key={item.char}>
+                      <td>{item.char}</td>
+                      <td>{item.code}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </section>
+          <section className="w-96">
+            <h3 className="font-serif italic font-bold text-2xl mb-4">
+              Calculations
+            </h3>
+            <div className="w-full border border-primary rounded-xl border-dotted px-2 py-1 text-dark">
+              <p>
+                The input text has
+                <b className="font-serif italic font-bold mx-1">
+                  N={inputText.length} symbols
+                </b>
+                of which
+                <b className="font-serif italic font-bold mx-1">
+                  {frequencyTable.length} are unique.
+                </b>
+                After computing the probability of each and building the tree ,
+                we can read it to fill the alphabet table with every encoded
+                symbol. Then, we just have to swap each symbol for its binary
+                result, and we get our encoded string.
+                <br />
+                With this table we can compute the average length,
+              </p>
+              <li className="font-serif italic font-bold mx-1">
+                Average Length, L = {/*averageLength*/} bits
+              </li>
+              <p>
+                Which is very close to the minimum, defined by the Shannon
+                Entropy,
+              </p>
+              <li className="font-serif italic font-bold mx-1">
+                Entropy, H = [formula] = {/* shannonEntropy */} bits/symbol.
+              </li>
+              <p>Other conclusions we can obtain are:</p>
+              <li className="font-serif italic font-bold mx-1">
+                Code Efficiency: /eta = H/L = {/* codeEfficiency */}
+              </li>
+              <li className="font-serif italic font-bold mx-1">
+                Residual Efficiency: /tau = H - L = {/* residualEfficiency */}
+              </li>
+              <li className="font-serif italic font-bold mx-1">
+                Code Redundancy: r = 1 - /tau = {/* codeRedundancy */}
+              </li>
+              <li className="font-serif italic font-bold mx-1">
+                Compression Ratio: 182/408 bits = {/* compressionRatio */}%
+              </li>
+            </div>
+          </section>
+        </div>
+        <div className="h-10 bg-tess-1-primary bg-repeat-x bg-center"></div>
+        <div className="h-10 bg-primary bg-tess-2-light bg-repeat-x bg-center"></div>
+      </div>
+    </>
   );
 };
