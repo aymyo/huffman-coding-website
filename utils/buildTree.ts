@@ -1,6 +1,5 @@
-
 import { RawNodeDatum } from "react-d3-tree/lib/types/common";
-import { AnalyzedSymbol } from "../pages";
+import { AnalyzedSymbol } from "../components/HuffmanEncoder";
 
 /* Adapted from https://github.com/kelreel/huffman-javascript */
 export function getTree(symbolAndFrequencyArray: Array<AnalyzedSymbol>): RawNodeDatum {
