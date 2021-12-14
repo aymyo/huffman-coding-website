@@ -3,7 +3,7 @@
 import { RawNodeDatum } from "react-d3-tree/lib/types/common";
 import { AnalyzedSymbol } from "../pages";
 
-export function getTree(symbolAndFrequencyArray: Array<AnalyzedSymbol>): TreeNode {
+export function getTree(symbolAndFrequencyArray: Array<AnalyzedSymbol>): RawNodeDatum {
     let arr: RawNodeDatum[] = symbolAndFrequencyArray.map((elem) => ({
         name: elem.char,
         attributes: {
@@ -70,7 +70,7 @@ function searchMinWeightNode(arr: Array<RawNodeDatum>, minNumber = -1): RawNodeD
 }
 
 
-export function getSymbolCode(tree: RawNodeDatum, symbol: string, code = ''): string {
+export function getSymbolCode(tree: RawNodeDatum, symbol: string, code = ''): string | undefined {
     let arr: RawNodeDatum[];
     if (typeof tree.children === undefined) {
         return code;
@@ -121,10 +121,10 @@ export function getFrequency(text: string): [string, number][] {
 }
 
 /** ENCODE TEXT */
-export function huffmanEncode(inputText: string, codeAlphabet: Array<{char: string, code:string}>): Array<string> {
+export function huffmanEncode(inputText: string, codeAlphabet: Array<{char: string, code:string | undefined}>): Array<string> {
     const result: Array<string> = [];
     for (let i = 0; i < inputText.length; i++) {
-        result.push(codeAlphabet.find((entry) => entry.char === inputText[i])?.code);
+        result.push(codeAlphabet.find((entry) => entry?.char === inputText[i])?.code as string);
     }
     return result;
 }

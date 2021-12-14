@@ -1,0 +1,22 @@
+{
+    "name" : "Huffman Coding Online",
+    "short_name" : "Huffman Site",
+    "start_url": "/",
+    "scope": "/",
+    "description" : "Learn about Huffman Coding and encode text with the web tool.",
+    "icons": [
+        {
+            "src": "/favicons/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicons/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#485676",
+    "background_color": "#485676",
+    "display": "standalone"
+}
