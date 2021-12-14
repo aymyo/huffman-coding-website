@@ -8,7 +8,7 @@ export const Header: FC = () => {
   const checkDisplayMode = () => {
     const isStandalone =
       window.matchMedia("(display-mode: standalone)").matches ||
-      window.navigator.standalone ||
+      (window.navigator as any)?.standalone ||
       document.referrer.includes("android-app://");
 
     setIsStandalone(isStandalone);
