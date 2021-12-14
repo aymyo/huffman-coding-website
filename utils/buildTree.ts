@@ -1,8 +1,8 @@
-/* https://github.com/kelreel/huffman-javascript */
 
 import { RawNodeDatum } from "react-d3-tree/lib/types/common";
 import { AnalyzedSymbol } from "../pages";
 
+/* Adapted from https://github.com/kelreel/huffman-javascript */
 export function getTree(symbolAndFrequencyArray: Array<AnalyzedSymbol>): RawNodeDatum {
     let arr: RawNodeDatum[] = symbolAndFrequencyArray.map((elem) => ({
         name: elem.char,
@@ -30,7 +30,7 @@ export function getTree(symbolAndFrequencyArray: Array<AnalyzedSymbol>): RawNode
     return createNode(arr[0], arr[1]);
 }
 
-/** CREATE TREE NODE FROM TWO NODES */
+/** Creates a tree node from two nodes. */
 function createNode(node1: RawNodeDatum, node2: RawNodeDatum): RawNodeDatum {
     if(!node1.attributes?.weight || !node2.attributes?.weight) {
        throw new Error('Error Encoding'); 
@@ -48,7 +48,7 @@ function createNode(node1: RawNodeDatum, node2: RawNodeDatum): RawNodeDatum {
     };
 }
 
-/** SEARCH NODE WITH MINIMAL WEIGHT IN TREE */
+/** Searches for the node with the smallest weight in the tree */
 function searchMinWeightNode(arr: Array<RawNodeDatum>, minNumber = -1): RawNodeDatum {
     let min = 1;
     let result: RawNodeDatum = {name: '',
@@ -70,7 +70,7 @@ function searchMinWeightNode(arr: Array<RawNodeDatum>, minNumber = -1): RawNodeD
     return result;
 }
 
-
+/** Gets the code word for a symbol, using the tree */
 export function getSymbolCode(tree: RawNodeDatum, symbol: string, code = ''): string | undefined {
     let arr: RawNodeDatum[];
     if (typeof tree.children === undefined) {
@@ -100,28 +100,7 @@ export function getSymbolCode(tree: RawNodeDatum, symbol: string, code = ''): st
         return getSymbolCode(arr[1], symbol, code + 1);
 }
 
-/** GET name FREQUENCY FROM TEXT */
-export function getFrequency(text: string): [string, number][] {
-    const freq: Map<string, number> = new Map();
-
-    for (let i = 0; i < text.length; i++) {
-        let counter = 0;
-        for (let j = 0; j < text.length; j++) {
-            if (!freq.has(text[i])) {
-                if (text[i] === text[j] && i !== j) {
-                    counter++;
-                }
-            }
-        }
-        if (!freq.has(text[i])) {
-            freq.set(text[i], counter + 1);
-        }
-    }
-
-    return Array.from(freq).sort((a, b) => b[1] - a[1]); //Descending sort
-}
-
-/** ENCODE TEXT */
+/** Encodes the text using the code alphabet generated from the tree */
 export function huffmanEncode(inputText: string, codeAlphabet: Array<{char: string, code:string | undefined}>): Array<string> {
     const result: Array<string> = [];
     for (let i = 0; i < inputText.length; i++) {
