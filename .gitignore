@@ -35,3 +35,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# sw
+**/public/workbox-*.js
+**/public/sw.js
