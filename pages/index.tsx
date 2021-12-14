@@ -394,7 +394,8 @@ const Conclusions: FC<{ calc?: AllCalculations }> = ({ calc }) => {
           compression ratio:
         </p>
         <li>
-          Compression Ratio: 182/408 bits = {calc.compressionRatio.toFixed(3)}%
+          Compression Ratio: {calc.huffmanBits}/{calc.naiveBits} bits ={" "}
+          {calc.compressionRatio.toFixed(3)}%
         </li>
         <p className="text-xs mt-4">
           <b>Note:</b> Values are truncated to 3 decimals for visualization
