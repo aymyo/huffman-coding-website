@@ -32,6 +32,14 @@ export interface AnalyzedSymbol {
 interface AllCalculations {
   N: number;
   uniqueN: number;
+  naiveBits: number;
+  huffmanBits: number;
+  L: number;
+  H: number;
+  codeEfficiency: number;
+  codeRedundancy: number;
+  residualEfficiency: number;
+  compressionRatio: number;
 }
 
 const HuffmanEncoder: FC = () => {
@@ -125,11 +133,50 @@ const HuffmanEncoder: FC = () => {
     let outputText = huffmanEncode(textToEncode, codeAlphabet).join("");
     setOutputText(outputText);
 
-    /* Make Calculations  */
+    /* Make Calculations
+        - N ✓ 
+        - uniqueN ✓ 
+        - initial bytes  ✓
+        - average length L ✓
+        - Entropy H
+        - Code efficiency
+        - Code Redundancy
+        - Residual Efficiency
+        - Compression Ratio */
+
+    let uniqueN = frequencyTable.length;
+    let naiveBits = N * 8;
+    let huffmanBits = outputText.length;
+    let L = codeAlphabet.reduce(
+      (acc, currDefinition, index) =>
+        /* L = SUM(li * pi) for all i, where i are the symbols */
+        acc +
+        (currDefinition.code as string)?.length *
+          frequencyTable[index].probability,
+      0
+    );
+    let H = frequencyTable.reduce((acc, currDefinition, index) => {
+      /* H = SUM(-pi * log2(pi)) for all i, where i are the symbols */
+      let p = currDefinition.probability;
+      return acc - p * Math.log2(p);
+    }, 0);
+
+    let codeEfficiency = H / L;
+    let residualEfficiency = H - L;
+    let codeRedundancy = 1 - codeEfficiency;
+    let compressionRatio = (huffmanBits / naiveBits) * 100;
 
     setAllCalculations({
-      N: textToEncode.length,
-      uniqueN: frequencyTable.length,
+      N,
+      uniqueN,
+      naiveBits,
+      huffmanBits,
+      L,
+      H,
+      codeEfficiency,
+      codeRedundancy,
+      residualEfficiency,
+      compressionRatio,
     });
   };
 
@@ -313,45 +360,46 @@ const CodeAlphabetTable: FC<CodeAlphabetProps> = ({ codeAlphabet }) => {
 const Conclusions: FC<{ calc?: AllCalculations }> = ({ calc }) => {
   if (!calc) return <></>;
   return (
-    <section className="w-96 grow">
+    <section className="w-96 grow calculations">
       <h3 className="font-serif italic font-bold text-xl mb-2">Calculations</h3>
       <div className="w-full border border-primary rounded-xl border-dotted px-2 py-1 text-dark">
         <p>
           The input text has
-          <b className="font-serif italic font-bold mx-1">N={calc.N} symbols</b>
+          <b>N={calc.N} symbols</b>
           of which
-          <b className="font-serif italic font-bold mx-1">
-            {calc.uniqueN} are unique.
-          </b>
-          After computing the probability of each and building the tree , we can
-          read it to fill the alphabet table with every encoded symbol. Then, we
+          <b>{calc.uniqueN} are unique.</b>
+          After computing the probability of each and building the tree, we can
+          use it to fill the alphabet table with every encoded symbol. Then, we
           just have to swap each symbol for its binary result, and we get our
           encoded string.
           <br />
-          With this table we can compute the average length,
+          With the obtained table we can compute the average length of the code
+          words,
         </p>
-        <li className="font-serif italic font-bold mx-1">
-          Average Length, L = {/*averageLength*/} bits
-        </li>
+        <li>Average Length, L = {calc.L.toFixed(3)} bits</li>
         <p>
           Which is very close to the minimum, defined by the Shannon Entropy,
         </p>
-        <li className="font-serif italic font-bold mx-1">
-          Entropy, H = [formula] = {/* shannonEntropy */} bits/symbol.
-        </li>
+        <li>Entropy, H = {calc.H.toFixed(3)} bits/symbol.</li>
         <p>Other conclusions we can obtain are:</p>
-        <li className="font-serif italic font-bold mx-1">
-          Code Efficiency: /eta = H/L = {/* codeEfficiency */}
+        <li>Code Efficiency: η = H/L = {calc.codeEfficiency.toFixed(3)}</li>
+        <li>
+          Residual Efficiency: τ = H - L = {calc.residualEfficiency.toFixed(3)}
         </li>
-        <li className="font-serif italic font-bold mx-1">
-          Residual Efficiency: /tau = H - L = {/* residualEfficiency */}
+        <li>Code Redundancy: r = 1 - η = {calc.codeRedundancy.toFixed(3)}</li>
+        <p>
+          If we would have encoded the text naively, it would have weighted{" "}
+          <b>{calc.naiveBits} bits</b>. On the other hand, with Huffman is{" "}
+          <b>{calc.huffmanBits} bits.</b> Therefore, we can calculate its
+          compression ratio:
+        </p>
+        <li>
+          Compression Ratio: 182/408 bits = {calc.compressionRatio.toFixed(3)}%
         </li>
-        <li className="font-serif italic font-bold mx-1">
-          Code Redundancy: r = 1 - /tau = {/* codeRedundancy */}
-        </li>
-        <li className="font-serif italic font-bold mx-1">
-          Compression Ratio: 182/408 bits = {/* compressionRatio */}%
-        </li>
+        <p className="text-xs mt-4">
+          <b>Note:</b> Values are truncated to 3 decimals for visualization
+          purposes.
+        </p>
       </div>
     </section>
   );

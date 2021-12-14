@@ -70,6 +70,14 @@ a.btn {
   white-space: nowrap;
 }
 
+.calculations b {
+  @apply font-serif italic font-bold mx-1;
+}
+
+.calculations li {
+  @apply font-serif italic font-bold mx-1;
+}
+
 @keyframes waveX {
   0%,
   100% {
