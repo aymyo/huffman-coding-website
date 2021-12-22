@@ -15,13 +15,16 @@ export function getTree(symbolAndFrequencyArray: Array<AnalyzedSymbol>): RawNode
     let min1;
     let min2;
     let node: RawNodeDatum;
-
+    
+    // Until there's only two nodes
     while (arr.length > 2) {
+        // Find the smallest nodes and remove them from the array
         min1 = searchMinWeightNode(arr);
         arr.splice(arr.indexOf(min1), 1);
         min2 = searchMinWeightNode(arr);
         arr.splice(arr.indexOf(min2), 1);
-
+        
+        // Create and add the joint node
         node = createNode(min1, min2);
         arr.push(node);
     }
