@@ -43,10 +43,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can find a hi-fi mockup design using Figma [here](https://www.figma.com/proto/TaNiNA46d7FmgJKxMaQCfi/Web---Huffman?node-id=542%3A427&scaling=scale-down-width&page-id=317%3A215&starting-point-node-id=542%3A427&hide-ui=1).
 
-As a curiosity, David A. Huffman, the author of the algorithm with his name was also a pioneer inmathematical origami.The decorations of this page are inspired by the [diagrams of his models](https://erikdemaine.org/papers/Huffman_Origami5/paper.pdf).
+As a curiosity, David A. Huffman, the author of the algorithm with his name, was also a pioneer in mathematical origami.The decorations of this page are inspired by the [diagrams of his models](https://erikdemaine.org/papers/Huffman_Origami5/paper.pdf).
+
 
 <div align="center">
-<img width="663" alt="Huffman origami diagrams" src="https://user-images.githubusercontent.com/40371955/147413381-b7cd59be-cf0c-4cac-b68c-1f913db4639c.png">
+<img width="420" alt="Huffman origami diagrams" src="https://user-images.githubusercontent.com/40371955/147413381-b7cd59be-cf0c-4cac-b68c-1f913db4639c.png">
 </div>
 
 ---
