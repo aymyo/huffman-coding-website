@@ -24,9 +24,9 @@ In order to encode a text using the Huffman algorhitm, follow these steps:
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It is deployed with the [Vercel Platform](https://vercel.com/). The following libraries have been used:
 
-- (TailwindCSS)[https://tailwindcss.com/]
-- (react-d3-tree)[https://github.com/bkrem/react-d3-tree]
-- (next-pwa)[https://github.com/shadowwalker/next-pwa]
+- [TailwindCSS](https://tailwindcss.com/)
+- [react-d3-tree](https://github.com/bkrem/react-d3-tree)
+- [next-pwa](https://github.com/shadowwalker/next-pwa)
 
 ### Run it localy
 
