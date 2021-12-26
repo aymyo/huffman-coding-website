@@ -39,7 +39,7 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the project.
 
-### Design
+## Design
 
 You can find a hi-fi mockup design using Figma [here](https://www.figma.com/proto/TaNiNA46d7FmgJKxMaQCfi/Web---Huffman?node-id=542%3A427&scaling=scale-down-width&page-id=317%3A215&starting-point-node-id=542%3A427&hide-ui=1).
 
