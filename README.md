@@ -15,7 +15,7 @@ To encode a text using the Huffman algorithm, follow these steps:
 2. Click 'Encode'
 3. The text will be analyzed and the frequency table of the symbols will be generated.
 4. The Huffman tree is created from the frequency table
-5. The code alphabet is generated from the tree (to learn how go to the _theory_ section of the website).
+5. The code alphabet is generated from the tree (to learn how, go to the _theory_ section of the website).
 6. The input text gets encoded using the alphabet, showing the result in the right text area.
 7. Aditional calculations and statistics are computed.
 
@@ -43,7 +43,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can find a hi-fi mockup design using Figma [here](https://www.figma.com/proto/TaNiNA46d7FmgJKxMaQCfi/Web---Huffman?node-id=542%3A427&scaling=scale-down-width&page-id=317%3A215&starting-point-node-id=542%3A427&hide-ui=1). 
 
-As a curiosity, David A. Huffman, the author of the algorithm with his name, was also a pioneer in mathematical origami.The decorations of this page are inspired by the [diagrams of his models](https://erikdemaine.org/papers/Huffman_Origami5/paper.pdf).
+As a curiosity, David A. Huffman, the author of the algorithm with his name, was also a pioneer in mathematical origami. The decorations of this page are inspired by the [diagrams of his models](https://erikdemaine.org/papers/Huffman_Origami5/paper.pdf).
 
 
 <div align="center">
@@ -53,7 +53,7 @@ As a curiosity, David A. Huffman, the author of the algorithm with his name, was
 ---
 
 #### References
-Tipography: [Inria Sans & Inria Serif](https://github.com/BlackFoundryCom/InriaFonts)
+Typography: [Inria Sans & Inria Serif](https://github.com/BlackFoundryCom/InriaFonts)
 
 This website was developed as part of the Audio Codification Systems course of the Audiovisual Systems Engineering Degree at Universitat Pompeu Fabra, Barcelona.
 
