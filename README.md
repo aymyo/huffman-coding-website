@@ -41,7 +41,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Design
 
-You can find a hi-fi mockup design using Figma [here](https://www.figma.com/proto/TaNiNA46d7FmgJKxMaQCfi/Web---Huffman?node-id=542%3A427&scaling=scale-down-width&page-id=317%3A215&starting-point-node-id=542%3A427&hide-ui=1).
+You can find a hi-fi mockup design using Figma [here](https://www.figma.com/proto/TaNiNA46d7FmgJKxMaQCfi/Web---Huffman?node-id=542%3A427&scaling=scale-down-width&page-id=317%3A215&starting-point-node-id=542%3A427&hide-ui=1). 
 
 As a curiosity, David A. Huffman, the author of the algorithm with his name, was also a pioneer in mathematical origami.The decorations of this page are inspired by the [diagrams of his models](https://erikdemaine.org/papers/Huffman_Origami5/paper.pdf).
 
@@ -52,7 +52,8 @@ As a curiosity, David A. Huffman, the author of the algorithm with his name, was
 
 ---
 
-##### References
+#### References
+Tipography: [Inria Sans & Inria Serif](https://github.com/BlackFoundryCom/InriaFonts)
 
 This website was developed as part of the Audio Codification Systems course of the Engineering Audiovisual System Degree of Universitat Pompeu Fabra, from Barcelona.
 
