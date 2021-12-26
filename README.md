@@ -39,6 +39,14 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the project.
 
+### Design
+
+You can find a hi-fi mockup design using Figma [here](https://www.figma.com/proto/TaNiNA46d7FmgJKxMaQCfi/Web---Huffman?node-id=542%3A427&scaling=scale-down-width&page-id=317%3A215&starting-point-node-id=542%3A427&hide-ui=1).
+
+As a curiosity, David A. Huffman, the author of the algorithm with his name was also a pioneer inmathematical origami.The decorations of this page are inspired by the [diagrams of his models](https://erikdemaine.org/papers/Huffman_Origami5/paper.pdf).
+
+![diagrams](https://user-images.githubusercontent.com/40371955/147413349-fa3a94e7-c041-41b0-b588-5b5d59284c99.png)
+
 ---
 
 ##### References
