@@ -20,9 +20,7 @@ export const Footer: FC = () => {
             to understand the key concepts.
           </p>
           <p className="mt-2">
-            This website was developed as part of the Audio Codification Systems
-            course of the Engineering Audiovisual System Degree of{" "}
-            <i>Universitat Pompeu Fabra</i>, from Barcelona.
+            This website was developed as part of the Audio Codification Systems course of the Audiovisual Systems Engineering Degree at <i>Universitat Pompeu Fabra</i>, Barcelona.
           </p>
         </section>
         <section className="max-w-2xl mt-4 leading-tight text-sm">
