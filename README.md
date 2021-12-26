@@ -1,11 +1,16 @@
-## Huffman Coding Online
 
-|  The aim of this project is to provide an interactive web tool to learn about Huffman Coding, along with the information necessary to understand the key concepts.   |
+<div align="center">
+<img alt="Title: Huffman Online Coding" src="https://user-images.githubusercontent.com/40371955/147412701-0737c7c4-7c0e-4285-9d0a-42a20f4332c3.png">
+</div>
+
+---
+
+| The aim of this project is to provide an interactive web tool to learn about Huffman Coding, along with the information necessary to understand the key concepts. |
 |---|
 
 The project is live and hosted at: https://huffman-coding-online.vercel.app/ 
 
-### How does it work?
+## How does it work?
 
 In order to encode a text using the Huffman algorhitm, follow these steps:
 
@@ -17,11 +22,11 @@ In order to encode a text using the Huffman algorhitm, follow these steps:
 6. The input text gets encoded using the alphabet, showing the result in the right text area.
 7. Aditional calculations and statistics are computed.
 
-###  Technology
+##  Technology
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It is deployed with the [Vercel Platform](https://vercel.com/)
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It is deployed with the [Vercel Platform](https://vercel.com/).
 
-### Run it localy
+## Run it localy
 
 Download the repository, and install the dependencies ``npm install``. Afterwards, run the development server:
 
@@ -33,6 +38,10 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the prooject.
 
+---
+
 ##### References
 
 This website was developed as part of the Audio Codification Systems course of the Engineering Audiovisual System Degree of Universitat Pompeu Fabra, from Barcelona.
+
+**License:** MIT
