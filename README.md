@@ -45,7 +45,9 @@ You can find a hi-fi mockup design using Figma [here](https://www.figma.com/prot
 
 As a curiosity, David A. Huffman, the author of the algorithm with his name was also a pioneer inmathematical origami.The decorations of this page are inspired by the [diagrams of his models](https://erikdemaine.org/papers/Huffman_Origami5/paper.pdf).
 
-![diagrams](https://user-images.githubusercontent.com/40371955/147413349-fa3a94e7-c041-41b0-b588-5b5d59284c99.png)
+<div align="center">
+<img width="663" alt="Huffman origami diagrams" src="https://user-images.githubusercontent.com/40371955/147413381-b7cd59be-cf0c-4cac-b68c-1f913db4639c.png">
+</div>
 
 ---
 
