@@ -2,7 +2,7 @@
 <img alt="Title: Huffman Online Coding" src="https://user-images.githubusercontent.com/40371955/147412701-0737c7c4-7c0e-4285-9d0a-42a20f4332c3.png">
 </div>
 
-| This project aims to provide an interactive web tool to learn about Huffman Coding, along with the information necessary to understand the key concepts. |
+| An interactive web tool to learn about Huffman Coding, backed with theory to understand its key concepts. |
 |---|
 
 The project is live and hosted at: https://huffman-coding-online.vercel.app/ 
