@@ -3,8 +3,6 @@
 <img alt="Title: Huffman Online Coding" src="https://user-images.githubusercontent.com/40371955/147412701-0737c7c4-7c0e-4285-9d0a-42a20f4332c3.png">
 </div>
 
----
-
 | The aim of this project is to provide an interactive web tool to learn about Huffman Coding, along with the information necessary to understand the key concepts. |
 |---|
 
@@ -24,9 +22,11 @@ In order to encode a text using the Huffman algorhitm, follow these steps:
 
 ##  Technology
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It is deployed with the [Vercel Platform](https://vercel.com/).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It is deployed with the [Vercel Platform](https://vercel.com/). The following libraries have been used:
 
-
+- (TailwindCSS)[https://tailwindcss.com/]
+- (react-d3-tree)[https://github.com/bkrem/react-d3-tree]
+- (next-pwa)[https://github.com/shadowwalker/next-pwa]
 
 ### Run it localy
 
